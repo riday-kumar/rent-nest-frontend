@@ -72,7 +72,9 @@ export function Navbar() {
           href="/"
           className={`font-bold text-2xl ${isHome ? "text-white" : "text-black"}`}
         >
-          <span className="hidden sm:inline">RentNest</span>
+          <span className="hidden sm:inline secondary-text-color">
+            RentNest
+          </span>
         </Link>
 
         {/* Desktop Navigation Links */}

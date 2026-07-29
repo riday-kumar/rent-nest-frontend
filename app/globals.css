@@ -128,3 +128,11 @@
     @apply font-sans;
   }
 }
+
+.bg-secondary {
+  background-color: #ff5a3d;
+}
+
+.secondary-text-color {
+  color: #ff5a3d;
+}
