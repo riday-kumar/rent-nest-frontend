@@ -3,6 +3,7 @@ import WhyChooseUs from "./_components/home/ChooseUse";
 import HowItWorks from "./_components/home/HowItWorks";
 import PropertyList from "./_components/home/PropertyList";
 import PropertyServices from "./_components/home/PropertyServices";
+import TestimonialSection from "./_components/home/TestimonialSection";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <PropertyList />
       <PropertyServices />
       <HowItWorks />
+      <TestimonialSection />
     </div>
   );
 }
