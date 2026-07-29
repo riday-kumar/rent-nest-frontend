@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,9 +14,25 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const [user, setUser] = useState({
     name: "John Doe",
     email: "john@example.com",
@@ -38,24 +54,36 @@ export function Navbar() {
     { href: "#about", label: "About" },
   ];
 
+  const pathName = usePathname();
+  const isHome = pathName === "/";
+  const backgroundClass = isHome
+    ? isScrolled
+      ? "bg-white shadow-md ease-in-out duration-400"
+      : "bg-transparent "
+    : "bg-white shadow-md";
+
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+    <nav
+      className={` fixed top-0 z-50 w-full px-4 transition-colors ${backgroundClass}`}
+    >
       <div className="mx-auto flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-          <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground">
-            RN
-          </div>
+        <Link
+          href="/"
+          className={`font-bold text-2xl ${isHome ? "text-white" : "text-black"}`}
+        >
           <span className="hidden sm:inline">RentNest</span>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div
+          className={`hidden md:flex items-center gap-8 ${isHome ? "text-white" : "text-black"}`}
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-xl font-medium text-foreground/70 transition-colors hover:text-foreground"
+              className="text-xl font-medium  transition-colors hover:text-foreground"
             >
               {link.label}
             </Link>
