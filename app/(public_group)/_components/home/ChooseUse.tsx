@@ -39,7 +39,7 @@ const FEATURES: Feature[] = [
 
 function FeatureCard({ icon: Icon, title, description }: Feature) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-8 text-center transition-shadow hover:shadow-md">
+    <div className="rounded-lg  bg-white p-8 text-center transition-shadow hover:shadow-md">
       <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center">
         <Icon
           className="h-14 w-14"
