@@ -4,7 +4,7 @@ import HeroSearch from "./HeroSearch";
 const Banner = () => {
   return (
     <div className=" bg-[#13293da5] bg-[url('/banner3.jpg')] bg-blend-overlay bg-cover bg-center ">
-      <div className="flex flex-col justify-center items-center border-2 border-red-500 h-screen">
+      <div className="flex flex-col justify-center items-center h-screen">
         {/* ============= heading ============= */}
         <h1 className="text-center text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold text-white">
           Find Your Next Perfect <br></br>{" "}
