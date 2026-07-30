@@ -18,7 +18,7 @@ const steps = [
     icon: KeyRound,
     title: "Take the Keys",
     description:
-      "Once your request is approved, complete the process and move into your new home with confidence.",
+      "Once your request is approved, pay the first month rent and move into your new home with confidence.",
   },
 ];
 
