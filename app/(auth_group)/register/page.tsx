@@ -23,7 +23,7 @@ export default function RegisterPage() {
 
   return (
     <section className="min-h-screen">
-      <div className="container mx-auto flex min-h-screen items-center justify-center px-5 my-20">
+      <div className="w-11/12 mx-auto mt-36 mb-24 flex min-h-screen items-center justify-center px-5 my-20">
         <Card className="py-0 w-full max-w-6xl overflow-hidden rounded-3xl border-0 shadow-2xl">
           <CardContent className="grid p-0 lg:grid-cols-2">
             {/* Left Image */}

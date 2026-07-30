@@ -7,7 +7,7 @@ const PropertyList = () => {
   // call action for properties fetching
   return (
     <div className="bg-[#fef7f6] py-15">
-      <div className="container mx-auto max-lg:px-6 ">
+      <div className="w-11/12 mx-auto max-lg:px-6 ">
         <div className="mb-10 flex justify-between items-center">
           <div className="space-y-4">
             <h2 className="text-3xl font-semibold text-slate-800 sm:text-4xl">

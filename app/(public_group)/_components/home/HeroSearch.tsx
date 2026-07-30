@@ -25,7 +25,7 @@ export default function HeroSearch() {
   const handleSearch = () => {};
 
   return (
-    <div className="container mx-auto mt-10 w-full  rounded-2xl bg-white p-4 shadow-2xl">
+    <div className="w-11/12 mx-auto mb-40 md:mt-10 rounded-2xl bg-white p-4 shadow-2xl">
       <div className=" grid justify-center items-center grid-cols-1 gap-3 md:grid-cols-12">
         {/* Location */}
         <div className="relative md:col-span-3">

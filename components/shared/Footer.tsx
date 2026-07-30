@@ -19,13 +19,13 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <Link href="/" className="text-3xl font-bold text-white">
-              Rent<span className="text-primary">Nest</span>
+            <Link href="/" className="text-3xl font-bold secondary-text-color">
+              RentNest
             </Link>
 
             <p className="mt-5 leading-7 text-gray-400">
-              Discover verified properties for rent and sale. RentNest helps you
-              find your perfect home with a secure and hassle-free experience.
+              Discover verified properties for rent. RentNest helps you find
+              your perfect home with a secure and hassle-free experience.
             </p>
 
             <div className="mt-6 flex gap-4">

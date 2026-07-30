@@ -30,7 +30,7 @@ export default function PropertyServices() {
         backgroundImage: "url('/service-bg.jpg')",
       }}
     >
-      <div className="container mx-auto px-5">
+      <div className="w-11/12 mx-auto px-5">
         {/* Heading */}
 
         <div className="mb-20 flex items-center gap-5">

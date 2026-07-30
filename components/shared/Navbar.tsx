@@ -49,9 +49,8 @@ export function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "#features", label: "Features" },
-    { href: "#pricing", label: "Pricing" },
-    { href: "#about", label: "About" },
+    { href: "/about", label: "About" },
+    { href: "/properties", label: "Properties" },
   ];
 
   const pathName = usePathname();
@@ -61,6 +60,10 @@ export function Navbar() {
       ? "bg-white shadow-md ease-in-out duration-400"
       : "bg-transparent "
     : "bg-white shadow-md";
+
+  const homePageTextScrollBlack = isHome && isScrolled;
+  const homePageTextIsNotScrolled = isHome && !isScrolled;
+  // console.log(homePageTextScrollBlack);
 
   return (
     <nav
@@ -72,14 +75,12 @@ export function Navbar() {
           href="/"
           className={`font-bold text-2xl ${isHome ? "text-white" : "text-black"}`}
         >
-          <span className="hidden sm:inline secondary-text-color">
-            RentNest
-          </span>
+          <span className="inline secondary-text-color">RentNest</span>
         </Link>
 
         {/* Desktop Navigation Links */}
         <div
-          className={`hidden md:flex items-center gap-8 ${isHome ? "text-white" : "text-black"}`}
+          className={`hidden md:flex items-center gap-8 ${homePageTextScrollBlack && "text-black"} ${homePageTextIsNotScrolled ? "text-white" : "text-black"}`}
         >
           {navLinks.map((link) => (
             <Link
@@ -131,7 +132,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden">
+        <div className="md:hidden secondary-text-color font-bold">
           <Sheet>
             <SheetTrigger>
               <div>

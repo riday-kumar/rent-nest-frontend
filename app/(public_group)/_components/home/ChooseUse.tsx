@@ -55,7 +55,7 @@ function FeatureCard({ icon: Icon, title, description }: Feature) {
 
 export default function WhyChooseUs() {
   return (
-    <section className="container mx-auto max-lg:px-6 w-full bg-white py-20">
+    <section className="w-11/12 mx-auto max-lg:px-6 bg-white py-20">
       <div className="mx-auto">
         {/* Heading */}
         <div className="mb-14 text-center">

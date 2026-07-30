@@ -25,7 +25,7 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section className="pt-5 pb-24">
-      <div className="container mx-auto grid items-center gap-16 px-5 lg:grid-cols-2">
+      <div className="w-11/12 mx-auto grid items-center gap-16 px-5 lg:grid-cols-2">
         {/* Left Image */}
 
         <div className="relative">
