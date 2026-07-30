@@ -1,36 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
-import banner1 from "../../../../public/banner1.jpg";
 
-import {
-  Bath,
-  BedDouble,
-  Building2,
-  Car,
-  CheckCircle2,
-  CookingPot,
-  Home,
-  Landmark,
-  Mail,
-  MapPin,
-  Phone,
-  Sofa,
-  Square,
-  Users,
-} from "lucide-react";
 import LandlordCard from "../../_components/propertyDetails/LandlordCard";
 import PropertyInfo from "../../_components/propertyDetails/PropertyInfo";
 import PropertyDescription from "../../_components/propertyDetails/PropertyDescription";
