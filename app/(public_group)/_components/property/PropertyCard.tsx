@@ -1,94 +1,96 @@
 import React from "react";
+import banner1 from "../../../../public/banner1.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Bath, BedDouble, MapPin, Ruler } from "lucide-react";
+import { BedDouble, Bath, Square, Car, MapPin } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import banner1 from "../../../../public/banner1.jpg";
-
-interface PropertyCardProps {
+type PropertyCardProps = {
   id: string;
   title: string;
-  image: string;
   location: string;
+  image: string;
   price: number;
-  type: "rent" | "sale";
   bedrooms: number;
   bathrooms: number;
   area: number;
-}
+  garages: number;
+  landlord: string;
+  createdAt: string;
+};
 
-const PropertyCard = ({
-  id,
-  title,
-  image,
-  location,
-  price,
-  type,
-  bedrooms,
-  bathrooms,
-  area,
-}: PropertyCardProps) => {
+const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
   return (
-    <div className="group overflow-hidden rounded-3xl border bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-      {/* Image */}
-      <div className="relative overflow-hidden rounded-2xl">
-        <Image
-          src={banner1}
-          alt={title}
-          width={600}
-          height={400}
-          className="h-64 w-full object-cover transition duration-500 group-hover:scale-105"
-        />
-      </div>
+    <div className="overflow-hidden rounded-xl border bg-white shadow-sm transition hover:shadow-lg">
+      <div className="p-4 grid md:grid-cols-12">
+        {/* Image */}
+        <div className="relative md:col-span-4 h-72 ">
+          <Image
+            src={banner1}
+            alt={property.title}
+            fill
+            className="object-cover rounded-xl"
+          />
 
-      {/* Content */}
-      <div className="mt-5 space-y-4">
-        <div>
-          <h3 className="line-clamp-1 text-2xl font-semibold">{title}</h3>
-
-          <div className="mt-2 flex items-center gap-2 text-muted-foreground">
-            <MapPin className="h-4 w-4" />
-            <p className="line-clamp-1 text-sm">{location}</p>
+          <div className="absolute bottom-4 left-4 rounded-lg bg-black/70 px-4 py-2 text-xl font-semibold text-white">
+            ${property.price.toLocaleString()}
+            <span className="text-base font-normal">/month</span>
           </div>
         </div>
 
-        {/* Features */}
-        <div className="flex items-center justify-between border-b border-dashed pb-5 text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <Ruler className="h-4 w-4" />
-            <span className="text-sm">{area} sqft</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <BedDouble className="h-4 w-4" />
-            <span className="text-sm">{bedrooms} Bed</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Bath className="h-4 w-4" />
-            <span className="text-sm">{bathrooms} Bath</span>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between">
+        {/* Content */}
+        <div className="flex flex-col justify-between px-6 md:col-span-8">
           <div>
-            <h3 className="text-3xl font-bold">
-              ${price.toLocaleString()}
-              {type === "rent" && (
-                <span className="text-lg font-medium text-muted-foreground">
-                  /month
-                </span>
-              )}
-            </h3>
+            <h2 className="text-2xl font-semibold">{property.title}</h2>
+
+            <div className="mt-2 flex items-center gap-2 text-muted-foreground">
+              <MapPin size={16} />
+              <span>{property.location}</span>
+            </div>
+
+            <div className="mt-8 grid grid-cols-2 gap-y-6 text-muted-foreground">
+              <div className="flex items-center gap-3">
+                <BedDouble size={20} />
+                <span>{property.bedrooms} Bedrooms</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Bath size={20} />
+                <span>{property.bathrooms} Bathrooms</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Square size={20} />
+                <span>{property.area} sq ft</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Car size={20} />
+                <span>{property.garages} Garages</span>
+              </div>
+            </div>
           </div>
 
-          <Button size="icon" className="h-12 w-12 rounded-full">
-            <Link href={`/properties/${id}`}>
-              <ArrowUpRight className="h-5 w-5" />
+          <div className="mt-8 flex flex-col gap-4 border-t pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-2xl">
+                👤
+              </div>
+
+              <div>
+                <p className="font-medium">{property.landlord}</p>
+                <p className="text-sm text-muted-foreground">
+                  {property.createdAt}
+                </p>
+              </div>
+            </div>
+
+            <Link
+              href={`/properties/${property.id}`}
+              className="rounded-lg bg-primary px-5 py-2.5 text-center font-medium text-primary-foreground transition hover:opacity-90"
+            >
+              View Details
             </Link>
-          </Button>
+          </div>
         </div>
       </div>
     </div>

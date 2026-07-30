@@ -1,7 +1,8 @@
 import React from "react";
-import PropertyCard from "../property/PropertyCard";
+import PropertyCard from "../property/PropertyCardForHome";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import PropertyCardForHome from "../property/PropertyCardForHome";
 
 const PropertyList = () => {
   // call action for properties fetching
@@ -20,7 +21,7 @@ const PropertyList = () => {
         </div>
         {/* =================== property card ================= */}
         <div className="grid lg:grid-cols-3 gap-10 md:grid-cols-2 grid-cols-1">
-          <PropertyCard
+          <PropertyCardForHome
             id="1"
             title="Luxury Villa in Gulshan"
             image="/house1.jpg"
