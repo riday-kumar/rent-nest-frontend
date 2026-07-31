@@ -17,8 +17,10 @@ export default function SidebarItem({
   icon: Icon,
 }: SidebarItemProps) {
   const pathname = usePathname();
+  // console.log("pathname", pathname);
 
-  const isActive = pathname === href || pathname.startsWith(`${href}/`);
+  // const isActive = pathname === href || pathname.startsWith(`${href}/`);
+  const isActive = pathname === href;
 
   return (
     <Link
