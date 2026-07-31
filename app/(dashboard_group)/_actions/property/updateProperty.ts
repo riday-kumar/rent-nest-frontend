@@ -1,2 +1,8 @@
 "use server";
-export const updateProperty = async (propId, payload) => {};
+
+import { PropertyFormValues } from "@/lib/types";
+
+export const updateProperty = async (
+  id: string,
+  payload: PropertyFormValues,
+) => {};

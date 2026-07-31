@@ -22,41 +22,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Suspense, useEffect, useState } from "react";
-
-type PropertyFormValues = {
-  title: string;
-  description: string;
-
-  rentAmount: string;
-
-  address: string;
-  city: string;
-  district: string;
-  division: string;
-
-  size: string;
-
-  floorType: string;
-  bedRoom: string;
-  bathroom: string;
-  balconies: string;
-  kitchen: string;
-
-  livingRoom: boolean;
-  drawingRoom: boolean;
-  dinningRoom: boolean;
-  servantRoom: boolean;
-  parking: boolean;
-  lift: boolean;
-
-  serviceCharge: string;
-
-  images: string;
-
-  amenities: string;
-
-  categoryId: string;
-};
+import { PropertyFormValues } from "@/lib/types";
+import { createProperty } from "@/app/(dashboard_group)/_actions/property/createProperty";
+import { updateProperty } from "@/app/(dashboard_group)/_actions/property/updateProperty";
 
 const facilities = [
   "livingRoom",
@@ -78,7 +46,12 @@ const amenityOptions = [
   "Swimming Pool",
 ];
 
-export default function AddPropertyForm() {
+type PropertyFormProps = {
+  mode: "create" | "update";
+  initialData?: Partial<PropertyFormValues>;
+};
+
+export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     async function getCategories() {
@@ -132,14 +105,14 @@ export default function AddPropertyForm() {
 
       images: "",
 
-      amenities: [],
+      amenities: "",
 
       categoryId: "",
     },
   });
 
-  const onSubmit = (data: PropertyFormValues) => {
-    console.log("data", data);
+  const handleFormSubmit = async (data: PropertyFormValues) => {
+    // console.log("data", data);
     const payload = {
       ...data,
 
@@ -149,13 +122,18 @@ export default function AddPropertyForm() {
       amenities: data.amenities,
     };
 
-    console.log("payload", payload);
+    // console.log("payload", payload);
 
     // API CALL HERE
+    if (mode === "create") {
+      await createProperty(payload);
+    } else {
+      await updateProperty(id, payload);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-8">
       <FieldGroup>
         {/* Basic Information */}
 
@@ -309,7 +287,7 @@ export default function AddPropertyForm() {
         </Field>
 
         <Button type="submit" className="w-full">
-          Add Property
+          {mode === "create" ? "Add Property" : "Update Property"}
         </Button>
       </FieldGroup>
     </form>

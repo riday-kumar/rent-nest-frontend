@@ -7,6 +7,7 @@ import {
   User,
   PlusCircle,
   MessageSquare,
+  Edit,
 } from "lucide-react";
 
 export const landlordLinks = [
@@ -26,8 +27,13 @@ export const landlordLinks = [
     icon: PlusCircle,
   },
   {
+    title: "Update Property",
+    href: "/dashboard/landlord/properties/update",
+    icon: Edit,
+  },
+  {
     title: "Rent Requests",
-    href: "/dashboard/landlord/requests",
+    href: "/dashboard/landlord/request",
     icon: FileText,
   },
   {

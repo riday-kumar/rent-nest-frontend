@@ -1,2 +1,5 @@
 "use server";
-export const createProperty = async (payload) => {};
+
+import { PropertyFormValues } from "@/lib/types";
+
+export const createProperty = async (payload: PropertyFormValues) => {};
