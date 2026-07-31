@@ -5,7 +5,7 @@ import PropertyList from "./_components/home/PropertyList";
 import PropertyServices from "./_components/home/PropertyServices";
 import TestimonialSection from "./_components/home/TestimonialSection";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <Banner />

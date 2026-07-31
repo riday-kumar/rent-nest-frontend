@@ -15,11 +15,27 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { logOut } from "@/service/logOut";
+import { toast } from "sonner";
 
-export function Navbar() {
+type IUser = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+    isActive: boolean;
+  };
+};
+
+export function Navbar({ user }: { user: IUser }) {
+  // console.log("user", user);
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,18 +50,12 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const [user, setUser] = useState({
-    name: "John Doe",
-    email: "john@example.com",
-    avatar: "https://github.com/shadcn.png",
-  });
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
+  const handleLogOut = async (action: string) => {
+    if (action === "logout") {
+      await logOut();
+      toast.success("user logged out successfully");
+      router.push("/");
+    }
   };
 
   const navLinks = [
@@ -96,29 +106,33 @@ export function Navbar() {
 
         {/* Desktop Auth Section */}
         <div className="hidden md:flex items-center gap-4">
-          {isLoggedIn ? (
+          {user?.success ? (
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={
-                  <div className="relative h-8 w-8 rounded-full cursor-pointer">
+                  <Button className="relative h-8 w-8 rounded-full cursor-pointer">
                     <Avatar className="h-8 w-8">
                       {/* <AvatarImage src={user.avatar} alt={user.name} /> */}
-                      <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                      <AvatarFallback>
+                        {user.data.name.charAt(0)}
+                      </AvatarFallback>
                     </Avatar>
-                  </div>
+                  </Button>
                 }
               ></DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuGroup>
                   <DropdownMenuLabel>
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium">{user.name}</p>
-                      <p className="text-xs text-foreground/70">{user.email}</p>
+                      <p className="text-sm font-medium">{user.data.name}</p>
+                      <p className="text-xs text-foreground/70">
+                        {user.data.email}
+                      </p>
                     </div>
                   </DropdownMenuLabel>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout}>
+                <DropdownMenuItem onClick={() => handleLogOut("logout")}>
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -161,17 +175,20 @@ export function Navbar() {
 
                 {/* Mobile Auth Section */}
                 <div className="border-t pt-4">
-                  {isLoggedIn ? (
+                  {user?.success ? (
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <Avatar className="h-10 w-10">
-                          <AvatarImage src={user.avatar} alt={user.name} />
-                          <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                          <AvatarFallback>
+                            {user.data.name.charAt(0)}
+                          </AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="text-sm font-medium">{user.name}</p>
+                          <p className="text-sm font-medium">
+                            {user.data.name}
+                          </p>
                           <p className="text-xs text-foreground/70">
-                            {user.email}
+                            {user.data.email}
                           </p>
                         </div>
                       </div>
@@ -180,7 +197,7 @@ export function Navbar() {
                           variant="destructive"
                           size="sm"
                           className="w-full"
-                          onClick={handleLogout}
+                          onClick={() => handleLogOut("logout")}
                         >
                           Logout
                         </Button>

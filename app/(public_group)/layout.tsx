@@ -1,14 +1,17 @@
 import Footer from "@/components/shared/Footer";
 import { Navbar } from "@/components/shared/Navbar";
+import { getMe } from "@/service/getMe";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getMe();
+
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} />
       {children}
       <Footer />
     </div>
