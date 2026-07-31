@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -97,24 +98,25 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           {isLoggedIn ? (
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <div className="relative h-8 w-8 rounded-full cursor-pointer">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                </div>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium">{user.name}</p>
-                    <p className="text-xs text-foreground/70">{user.email}</p>
+              <DropdownMenuTrigger
+                render={
+                  <div className="relative h-8 w-8 rounded-full cursor-pointer">
+                    <Avatar className="h-8 w-8">
+                      {/* <AvatarImage src={user.avatar} alt={user.name} /> */}
+                      <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
                   </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
+                }
+              ></DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuGroup>
+                  <DropdownMenuLabel>
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium">{user.name}</p>
+                      <p className="text-xs text-foreground/70">{user.email}</p>
+                    </div>
+                  </DropdownMenuLabel>
+                </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout}>
                   Logout
@@ -123,10 +125,12 @@ export function Navbar() {
             </DropdownMenu>
           ) : (
             <>
-              <Button variant="outline" size="sm" onClick={handleLogin}>
-                Sign In
+              <Button variant="outline" size="sm">
+                <Link href="/login">Sign In</Link>
               </Button>
-              <Button size="sm">Sign Up</Button>
+              <Button size="sm">
+                <Link href="/register">Sign Up</Link>
+              </Button>
             </>
           )}
         </div>
@@ -172,12 +176,6 @@ export function Navbar() {
                         </div>
                       </div>
                       <div className="flex flex-col gap-2">
-                        <Button variant="outline" size="sm" className="w-full">
-                          Profile
-                        </Button>
-                        <Button variant="outline" size="sm" className="w-full">
-                          Settings
-                        </Button>
                         <Button
                           variant="destructive"
                           size="sm"
@@ -190,12 +188,8 @@ export function Navbar() {
                     </div>
                   ) : (
                     <div className="flex flex-col gap-2">
-                      <Button
-                        variant="outline"
-                        className="w-full"
-                        onClick={handleLogin}
-                      >
-                        Sign In
+                      <Button variant="outline" className="w-full">
+                        <Link href="/login">Sign In</Link>
                       </Button>
                       <Button className="w-full">Sign Up</Button>
                     </div>
