@@ -29,7 +29,7 @@ const SinglePropertyDetails = async ({ id }: { id: string }) => {
         </div>
 
         {/* ================ Landlord ============== */}
-        <LandlordCard landlord={property.landlord} />
+        <LandlordCard property={property} />
       </div>
 
       {/* ========================= */}

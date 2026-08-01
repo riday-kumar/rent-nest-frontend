@@ -6,11 +6,8 @@ import { Mail } from "lucide-react";
 import RequestButton from "./RequestButton";
 import { PropertyDetails } from "@/lib/types";
 
-const LandlordCard = ({
-  landlord,
-}: {
-  landlord: PropertyDetails["landlord"];
-}) => {
+const LandlordCard = ({ property }: { property: PropertyDetails }) => {
+  console.log("property form landlord card", property);
   return (
     <Card className="h-fit sticky top-24 shadow-md">
       <CardContent className="p-6">
@@ -24,7 +21,7 @@ const LandlordCard = ({
           </Avatar>
 
           <div>
-            <h3 className="font-semibold text-lg">{landlord.name}</h3>
+            <h3 className="font-semibold text-lg">{property.landlord.name}</h3>
 
             <p className="text-sm text-muted-foreground">Property Owner</p>
           </div>
@@ -35,11 +32,14 @@ const LandlordCard = ({
         <div className="space-y-4 text-sm">
           <div className="flex items-center gap-3">
             <Mail size={18} />
-            <span>{landlord.email}</span>
+            <span>{property.landlord.email}</span>
           </div>
         </div>
 
-        <RequestButton />
+        <RequestButton
+          propertyId={property.id}
+          propertyStatus={property.propertyStatus}
+        />
       </CardContent>
     </Card>
   );
