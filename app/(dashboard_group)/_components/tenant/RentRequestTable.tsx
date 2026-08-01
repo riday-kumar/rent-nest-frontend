@@ -13,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { createPayment } from "../../_actions/payment_action/createPayment";
 
 type RentStatus = "PENDING" | "APPROVED" | "REJECTED";
 type PaymentStatus = "PAID" | "UNPAID";
@@ -44,9 +45,8 @@ interface Props {
 
 export default function TenantRentRequestsTable({ requests }: Props) {
   const handlePay = async (requestId: string) => {
-    console.log("Pay:", requestId);
-
-    // await createCheckoutSession(requestId)
+    console.log(requestId);
+    await createPayment(requestId);
   };
 
   return (
