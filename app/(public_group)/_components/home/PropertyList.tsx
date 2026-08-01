@@ -1,11 +1,15 @@
 import React from "react";
-import PropertyCard from "../property/PropertyCardForHome";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import PropertyCardForHome from "../property/PropertyCardForHome";
 
-const PropertyList = () => {
-  // call action for properties fetching
+import { Button } from "@/components/ui/button";
+
+import PropertyCardForHome from "../property/PropertyCardForHome";
+import { allPublicProperties } from "../../_actions/property";
+import { PropertyCardProps } from "@/lib/types";
+import Link from "next/link";
+
+const PropertyList = async () => {
+  const PublicProperties = await allPublicProperties();
+  const sixProperties = PublicProperties.data.data.slice(0, 6);
   return (
     <div className="bg-[#fef7f6] py-15">
       <div className="w-11/12 mx-auto max-lg:px-6 ">
@@ -17,43 +21,17 @@ const PropertyList = () => {
             <p>Explore latest & featured properties for rent.</p>
           </div>
           {/* ------------ view all button ------------ */}
-          <Button variant={"outline"}>View All</Button>
+          <Button variant={"outline"}>
+            <Link prefetch={false} href="/properties">
+              View All
+            </Link>
+          </Button>
         </div>
         {/* =================== property card ================= */}
         <div className="grid lg:grid-cols-3 gap-10 md:grid-cols-2 grid-cols-1">
-          <PropertyCardForHome
-            id="1"
-            title="Luxury Villa in Gulshan"
-            image="/house1.jpg"
-            location="Gulshan, Dhaka"
-            price={3280}
-            type="rent"
-            bedrooms={3}
-            bathrooms={2}
-            area={1370}
-          />
-          <PropertyCard
-            id="1"
-            title="Luxury Villa in Gulshan"
-            image="/house1.jpg"
-            location="Gulshan, Dhaka"
-            price={3280}
-            type="rent"
-            bedrooms={3}
-            bathrooms={2}
-            area={1370}
-          />
-          <PropertyCard
-            id="1"
-            title="Luxury Villa in Gulshan"
-            image="/house1.jpg"
-            location="Gulshan, Dhaka"
-            price={3280}
-            type="rent"
-            bedrooms={3}
-            bathrooms={2}
-            area={1370}
-          />
+          {sixProperties.map((property: PropertyCardProps) => (
+            <PropertyCardForHome key={property.id} property={property} />
+          ))}
         </div>
       </div>
     </div>

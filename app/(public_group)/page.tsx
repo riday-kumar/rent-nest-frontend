@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Banner from "./_components/home/Banner";
 import WhyChooseUs from "./_components/home/ChooseUse";
 import HowItWorks from "./_components/home/HowItWorks";
@@ -9,8 +10,10 @@ export default async function Home() {
   return (
     <div>
       <Banner />
+      <Suspense fallback={<div>Loading...</div>}>
+        <PropertyList />
+      </Suspense>
       <WhyChooseUs />
-      <PropertyList />
       <PropertyServices />
       <HowItWorks />
       <TestimonialSection />
