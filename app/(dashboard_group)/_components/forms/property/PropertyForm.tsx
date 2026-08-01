@@ -60,6 +60,7 @@ type Category = {
 };
 
 export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
+  console.log("initialData", initialData);
   const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
   useEffect(() => {
@@ -85,6 +86,7 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors },
   } = useForm<PropertyFormValues>({
     defaultValues: {
@@ -123,12 +125,44 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
     },
   });
 
+  useEffect(() => {
+    if (mode === "update" && initialData) {
+      reset({
+        title: initialData.title ?? "",
+        description: initialData.description ?? "",
+        rentAmount: initialData.rentAmount ?? "",
+        address: initialData.address ?? "",
+        city: initialData.city ?? "",
+        district: initialData.district ?? "",
+        division: initialData.division ?? "",
+        size: initialData.size ?? "",
+        floorType: initialData.floorType ?? "",
+        bedRoom: initialData.bedRoom ?? "",
+        bathroom: initialData.bathroom ?? "",
+        balconies: initialData.balconies ?? "",
+        kitchen: initialData.kitchen ?? "",
+        livingRoom: initialData.livingRoom ?? false,
+        drawingRoom: initialData.drawingRoom ?? false,
+        dinningRoom: initialData.dinningRoom ?? false,
+        servantRoom: initialData.servantRoom ?? false,
+        parking: initialData.parking ?? false,
+        lift: initialData.lift ?? false,
+        serviceCharge: initialData.serviceCharge ?? "",
+        images: (initialData.images ?? []).join(","), // array -> string
+        amenities: initialData.amenities ?? [],
+        categoryId: initialData.categoryId ?? "",
+      });
+    }
+  }, [mode, initialData, reset]);
+
   const handleFormSubmit = async (data: PropertyFormValues) => {
     // console.log("data", data);
     const payload = {
       ...data,
 
-      images: data.images.split(",").map((item) => item.trim()),
+      images: data.images
+        ? data.images.split(",").map((item) => item.trim())
+        : [],
 
       // amenities: data.amenities.split(",").map((item) => item.trim()),
       amenities: data.amenities,
@@ -145,7 +179,11 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
         router.push("/dashboard/landlord/properties");
       }
     } else {
-      await updateProperty(payload.id, payload);
+      const res = await updateProperty(initialData?.id ?? "", payload);
+      if (res.success) {
+        toast.success("Property updated successfully");
+        router.push("/dashboard/landlord/properties");
+      }
     }
   };
 
@@ -307,6 +345,7 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
           <FieldLabel>Category</FieldLabel>
 
           <Select
+            value={watch("categoryId") ? String(watch("categoryId")) : ""}
             onValueChange={(value) => setValue("categoryId", Number(value))}
           >
             <SelectTrigger>

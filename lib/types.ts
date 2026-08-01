@@ -28,7 +28,7 @@ export type PropertyFormValues = {
 
   images: string;
 
-  amenities: string;
+  amenities: string[];
 
   categoryId: string;
 };

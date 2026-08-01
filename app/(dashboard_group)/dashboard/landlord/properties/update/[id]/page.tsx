@@ -1,9 +1,14 @@
-import PropertyForm from "@/app/(dashboard_group)/_components/forms/property/PropertyForm";
+import UpdateProperty from "@/app/(dashboard_group)/_components/landlordComponent/PropertyForUpdate";
 
-const UPdatePropertyPage = () => {
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+const UPdatePropertyPage = async ({ params }: PageProps) => {
+  const { id } = await params;
   return (
     <div>
-      <PropertyForm mode="update" />
+      <UpdateProperty params={id} />
     </div>
   );
 };
