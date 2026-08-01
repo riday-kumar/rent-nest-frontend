@@ -10,7 +10,7 @@ const PropertyHeading = ({
   division,
   rentAmount,
 }: {
-  rentAmount: number;
+  rentAmount: string;
   categoryName: string;
   title: string;
   address: string;

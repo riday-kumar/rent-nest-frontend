@@ -125,7 +125,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-14 flex flex-col items-center justify-between gap-6 border-t border-slate-800 pt-6 md:flex-row">
           <p className="text-center text-sm text-gray-400 md:text-left">
-            © {new Date().getFullYear()} RentNest. All rights reserved.
+            © 2026 RentNest. All rights reserved.
           </p>
 
           <Image

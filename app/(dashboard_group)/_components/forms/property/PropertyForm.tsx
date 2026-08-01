@@ -176,6 +176,7 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
       const res = await createProperty(payload);
       if (res.success) {
         toast.success("Property created successfully");
+        reset();
         router.push("/dashboard/landlord/properties");
       }
     } else {

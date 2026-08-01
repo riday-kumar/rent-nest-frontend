@@ -22,7 +22,7 @@ const PropertyGallery = ({
         {images.map((image, index) => (
           <CarouselItem key={index}>
             <div className="relative h-[500px] overflow-hidden rounded-xl">
-              <Image src={banner1} alt={title} fill className="object-cover" />
+              <Image src={image} alt={title} fill className="object-cover" />
             </div>
           </CarouselItem>
         ))}

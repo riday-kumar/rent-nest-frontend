@@ -7,15 +7,41 @@ import { BedDouble, Bath, Square, Car, MapPin } from "lucide-react";
 type PropertyCardProps = {
   id: string;
   title: string;
-  location: string;
-  image: string;
-  price: number;
-  bedrooms: number;
-  bathrooms: number;
-  area: number;
-  garages: number;
-  landlord: string;
+  description: string;
+  rentAmount: string;
+  address: string;
+  city: string;
+  district: string;
+  division: string;
+  propertyStatus: string;
+  size: number;
+  floorType: string;
+  bedRoom: number;
+  bathroom: number;
+  balconies: number;
+  livingRoom: boolean;
+  drawingRoom: boolean;
+  dningRoom: boolean;
+  kitchen: number;
+  servantRoom: boolean;
+  parking: boolean;
+  lift: boolean;
+  serviceCharge: string;
+  images: string[];
+  amenities: string[];
+  categoryId: number;
+  landlordId: string;
   createdAt: string;
+  updatedAt: string;
+  category: {
+    id: number;
+    categoryName: string;
+  };
+  review: string[];
+  landlord: {
+    name: string;
+    email: string;
+  };
 };
 
 const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
@@ -25,14 +51,14 @@ const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
         {/* Image */}
         <div className="relative md:col-span-4 h-72 ">
           <Image
-            src={banner1}
+            src={property.images[0]}
             alt={property.title}
             fill
             className="object-cover rounded-xl"
           />
 
           <div className="absolute bottom-4 left-4 rounded-lg bg-black/70 px-4 py-2 text-xl font-semibold text-white">
-            ${property.price.toLocaleString()}
+            {property.rentAmount}
             <span className="text-base font-normal">/month</span>
           </div>
         </div>
@@ -44,28 +70,28 @@ const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
 
             <div className="mt-2 flex items-center gap-2 text-muted-foreground">
               <MapPin size={16} />
-              <span>{property.location}</span>
+              <span>{property.address}</span>
             </div>
 
             <div className="mt-8 grid grid-cols-2 gap-y-6 text-muted-foreground">
               <div className="flex items-center gap-3">
                 <BedDouble size={20} />
-                <span>{property.bedrooms} Bedrooms</span>
+                <span>{property.bedRoom} Bedrooms</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <Bath size={20} />
-                <span>{property.bathrooms} Bathrooms</span>
+                <span>{property.bathroom} Bathrooms</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <Square size={20} />
-                <span>{property.area} sq ft</span>
+                <span>{property.size} sq ft</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <Car size={20} />
-                <span>{property.garages} Garages</span>
+                <span>{property.parking} Parking</span>
               </div>
             </div>
           </div>
@@ -77,7 +103,7 @@ const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
               </div>
 
               <div>
-                <p className="font-medium">{property.landlord}</p>
+                <p className="font-medium">{property.landlord.name}</p>
                 <p className="text-sm text-muted-foreground">
                   {property.createdAt}
                 </p>

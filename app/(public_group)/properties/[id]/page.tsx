@@ -1,123 +1,57 @@
-"use client";
+import { Suspense } from "react";
+import SinglePropertyDetails from "../../_components/propertyDetails/SinglePropertyDetails";
+import Loading from "./loading";
 
-import { Separator } from "@/components/ui/separator";
+// const property = {
+//   title: "Hridoy new Apartment",
+//   description:
+//     "A spacious and well-ventilated apartment located in a peaceful neighborhood. Close to schools, hospitals, shopping malls, and public transportation. Ideal for families looking for a comfortable lifestyle.",
 
-import LandlordCard from "../../_components/propertyDetails/LandlordCard";
-import PropertyInfo from "../../_components/propertyDetails/PropertyInfo";
-import PropertyDescription from "../../_components/propertyDetails/PropertyDescription";
-import PropertyGallery from "../../_components/propertyDetails/PropertyGallery";
-import PropertyHeading from "../../_components/propertyDetails/PropertyHeading";
-import PropertyReview from "../../_components/propertyDetails/PropertyReview";
-import Amenities from "../../_components/propertyDetails/Amenities";
+//   rentAmount: 20000,
 
-const property = {
-  title: "Hridoy new Apartment",
-  description:
-    "A spacious and well-ventilated apartment located in a peaceful neighborhood. Close to schools, hospitals, shopping malls, and public transportation. Ideal for families looking for a comfortable lifestyle.",
+//   address: "Tanbazar",
+//   city: "Narayanganj",
+//   district: "Narayanganj",
+//   division: "Dhaka",
 
-  rentAmount: 20000,
+//   size: 1450,
+//   floorType: "5th Floor",
 
-  address: "Tanbazar",
-  city: "Narayanganj",
-  district: "Narayanganj",
-  division: "Dhaka",
+//   bedRoom: 3,
+//   bathroom: 2,
+//   balconies: 2,
 
-  size: 1450,
-  floorType: "5th Floor",
+//   livingRoom: true,
+//   drawingRoom: true,
+//   dinningRoom: true,
 
-  bedRoom: 3,
-  bathroom: 2,
-  balconies: 2,
+//   kitchen: 1,
 
-  livingRoom: true,
-  drawingRoom: true,
-  dinningRoom: true,
+//   servantRoom: false,
 
-  kitchen: 1,
+//   parking: true,
+//   lift: true,
 
-  servantRoom: false,
+//   serviceCharge: 3000,
 
-  parking: true,
-  lift: true,
+//   images: [
+//     "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200",
+//     "https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200",
+//     "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=1200",
+//   ],
 
-  serviceCharge: 3000,
+//   amenities: ["WiFi", "Generator", "Security", "Gas", "CCTV"],
 
-  images: [
-    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200",
-    "https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200",
-    "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=1200",
-  ],
+//   categoryName: "Flat",
+// };
 
-  amenities: ["WiFi", "Generator", "Security", "Gas", "CCTV"],
-
-  categoryName: "Flat",
-};
-
-export default function PropertyDetails() {
+export default async function PropertyDetails({
+  params,
+}: PageProps<"/properties/[id]">) {
+  const { id } = await params;
   return (
-    <div className="w-11/12 mx-auto mt-36 mb-24">
-      {/* ========================= */}
-      {/* TOP SECTION */}
-      {/* ========================= */}
-
-      <div className="grid lg:grid-cols-3 gap-8 mb-10">
-        <div className="lg:col-span-2">
-          {/* =================== Carousel ============== */}
-          <PropertyGallery images={property.images} title={property.title} />
-        </div>
-
-        {/* ================ Landlord ============== */}
-        <LandlordCard />
-      </div>
-
-      {/* ========================= */}
-      {/* MAIN CONTENT */}
-      {/* ========================= */}
-
-      <div className="space-y-8">
-        {/* ================== Header ======= */}
-
-        <PropertyHeading
-          title={property.title}
-          categoryName={property.categoryName}
-          address={property.address}
-          city={property.city}
-          division={property.division}
-          rentAmount={property.rentAmount}
-        />
-
-        <Separator />
-
-        {/* ============== Property Info ========== */}
-
-        <PropertyInfo property={property} />
-
-        <Separator />
-
-        {/* =================== Amenities =============== */}
-
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Amenities</h2>
-
-          <Amenities amenities={property.amenities} />
-        </div>
-
-        <Separator />
-
-        {/* Description */}
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Description</h2>
-          <PropertyDescription description={property.description} />
-        </div>
-
-        <Separator />
-
-        {/* ============= Static Reviews ================= */}
-        <div>
-          <h2 className="text-2xl font-semibold mb-5">Reviews</h2>
-          <PropertyReview />
-        </div>
-      </div>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <SinglePropertyDetails id={id} />
+    </Suspense>
   );
 }
