@@ -1,9 +1,17 @@
 "use server";
 export const gestCategory = async () => {
   const res = await fetch(
-    "https://rent-nest-b7-a4.vercel.app/api/category/all-categories",
+    `${process.env.BACKEND_API_URL}/category/all-categories`,
+    {
+      cache: "force-cache",
+      next: {
+        revalidate: 60 * 60 * 24,
+        tags: ["category"],
+      },
+    },
   );
 
   const result = await res.json();
-  return result.data;
+  // console.log("result", result);
+  return result;
 };

@@ -25,6 +25,9 @@ import { Suspense, useEffect, useState } from "react";
 import { PropertyFormValues } from "@/lib/types";
 import { createProperty } from "@/app/(dashboard_group)/_actions/property/createProperty";
 import { updateProperty } from "@/app/(dashboard_group)/_actions/property/updateProperty";
+import { gestCategory } from "@/app/(dashboard_group)/_actions/property/getCategory";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const facilities = [
   "livingRoom",
@@ -51,15 +54,22 @@ type PropertyFormProps = {
   initialData?: Partial<PropertyFormValues>;
 };
 
+type Category = {
+  id: string;
+  categoryName: string;
+};
+
 export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
-  const [categories, setCategories] = useState([]);
+  const router = useRouter();
+  const [categories, setCategories] = useState<Category[]>([]);
   useEffect(() => {
     async function getCategories() {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_API}/category/all-categories`,
-      );
+      // const res = await fetch(
+      //   `${process.env.NEXT_PUBLIC_BACKEND_API}/category/all-categories`,
+      // );
 
-      const data = await res.json();
+      // const data = await res.json();
+      const data = await gestCategory();
       console.log("category data", data.data);
 
       setCategories(data.data);
@@ -67,6 +77,8 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
 
     getCategories();
   }, []);
+
+  // console.log("categories", categories);
 
   const {
     register,
@@ -120,15 +132,20 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
 
       // amenities: data.amenities.split(",").map((item) => item.trim()),
       amenities: data.amenities,
+      categoryId: Number(data.categoryId),
     };
 
-    // console.log("payload", payload);
+    console.log("payload", payload);
 
     // API CALL HERE
     if (mode === "create") {
-      await createProperty(payload);
+      const res = await createProperty(payload);
+      if (res.success) {
+        toast.success("Property created successfully");
+        router.push("/dashboard/landlord/properties");
+      }
     } else {
-      await updateProperty(id, payload);
+      await updateProperty(payload.id, payload);
     }
   };
 
@@ -160,19 +177,39 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
             {...register("description")}
           />
         </Field>
+        {/* Rent amount */}
 
         <Field>
           <FieldLabel>Rent Amount</FieldLabel>
 
           <Input
+            type="number"
             placeholder="20000"
             {...register("rentAmount", {
               required: "Rent amount required",
+              valueAsNumber: true,
             })}
           />
 
           {errors.rentAmount && (
             <FieldError>{errors.rentAmount.message}</FieldError>
+          )}
+        </Field>
+
+        {/* Service charge */}
+        <Field>
+          <FieldLabel>Service Charge</FieldLabel>
+
+          <Input
+            type="number"
+            placeholder="2000"
+            {...register("serviceCharge", {
+              valueAsNumber: true,
+            })}
+          />
+
+          {errors.serviceCharge && (
+            <FieldError>{errors.serviceCharge.message}</FieldError>
           )}
         </Field>
 
@@ -192,20 +229,20 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
 
         <h2 className="text-xl font-semibold">Property Details</h2>
 
-        {[
-          "size",
-          "floorType",
-          "bedRoom",
-          "bathroom",
-          "balconies",
-          "kitchen",
-        ].map((field) => (
-          <Field key={field}>
-            <FieldLabel>{field}</FieldLabel>
+        {["size", "bedRoom", "bathroom", "balconies", "kitchen"].map(
+          (field) => (
+            <Field key={field}>
+              <FieldLabel>{field}</FieldLabel>
 
-            <Input {...register(field as keyof PropertyFormValues)} />
-          </Field>
-        ))}
+              <Input
+                type="number"
+                {...register(field as keyof PropertyFormValues, {
+                  valueAsNumber: true,
+                })}
+              />
+            </Field>
+          ),
+        )}
 
         {/* Facilities */}
 
@@ -269,7 +306,9 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
         <Field>
           <FieldLabel>Category</FieldLabel>
 
-          <Select onValueChange={(value) => setValue("categoryId", value)}>
+          <Select
+            onValueChange={(value) => setValue("categoryId", Number(value))}
+          >
             <SelectTrigger>
               <SelectValue placeholder="Select category" />
             </SelectTrigger>
@@ -277,7 +316,7 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
             <SelectContent>
               <Suspense fallback={<p>loading category</p>}>
                 {categories.map((category) => (
-                  <SelectItem key={category.id} value={category.id}>
+                  <SelectItem key={category.id} value={Number(category.id)}>
                     {category.categoryName}
                   </SelectItem>
                 ))}
