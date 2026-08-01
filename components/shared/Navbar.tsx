@@ -58,6 +58,16 @@ export function Navbar({ user }: { user: IUser }) {
     }
   };
 
+  const handleRedirect = () => {
+    if (user?.data.role === "ADMIN") {
+      router.push("/admin");
+    } else if (user?.data.role === "LANDLORD") {
+      router.push("/dashboard/landlord");
+    } else {
+      router.push("/dashboard/tenant");
+    }
+  };
+
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
@@ -127,6 +137,13 @@ export function Navbar({ user }: { user: IUser }) {
                       <p className="text-sm font-medium">{user.data.name}</p>
                       <p className="text-xs text-foreground/70">
                         {user.data.email}
+                      </p>
+                      <DropdownMenuSeparator />
+                      <p
+                        onClick={() => handleRedirect()}
+                        className="text-xs text-foreground/70"
+                      >
+                        Dashboard
                       </p>
                     </div>
                   </DropdownMenuLabel>
