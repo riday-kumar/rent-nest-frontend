@@ -1,14 +1,4 @@
-import {
-  LayoutDashboard,
-  House,
-  Heart,
-  CircleDollarSign,
-  FileText,
-  User,
-  PlusCircle,
-  MessageSquare,
-  Edit,
-} from "lucide-react";
+import { LayoutDashboard, House, FileText, PlusCircle } from "lucide-react";
 
 export const landlordLinks = [
   {
@@ -27,24 +17,9 @@ export const landlordLinks = [
     icon: PlusCircle,
   },
   {
-    title: "Update Property",
-    href: "/dashboard/landlord/properties/update",
-    icon: Edit,
-  },
-  {
     title: "Rent Requests",
     href: "/dashboard/landlord/request",
     icon: FileText,
-  },
-  {
-    title: "Reviews",
-    href: "/dashboard/landlord/reviews",
-    icon: MessageSquare,
-  },
-  {
-    title: "Profile",
-    href: "/dashboard/profile",
-    icon: User,
   },
 ];
 
@@ -53,30 +28,5 @@ export const tenantLinks = [
     title: "Dashboard",
     href: "/dashboard/tenant",
     icon: LayoutDashboard,
-  },
-  {
-    title: "Browse Properties",
-    href: "/properties",
-    icon: House,
-  },
-  {
-    title: "Wishlist",
-    href: "/dashboard/tenant/wishlist",
-    icon: Heart,
-  },
-  {
-    title: "My Requests",
-    href: "/dashboard/tenant/requests",
-    icon: FileText,
-  },
-  {
-    title: "Payments",
-    href: "/dashboard/tenant/payments",
-    icon: CircleDollarSign,
-  },
-  {
-    title: "Profile",
-    href: "/dashboard/profile",
-    icon: User,
   },
 ];

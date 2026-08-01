@@ -1,7 +1,14 @@
-import DashboardLayout from "../_components/dashboard/DashboardLayout";
+import { Suspense } from "react";
+import DashboardProvider from "../_components/dashboard/DashboardProvider";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  const role = "LANDLORD";
-
-  return <DashboardLayout role={role}>{children}</DashboardLayout>;
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DashboardProvider>{children}</DashboardProvider>
+    </Suspense>
+  );
 }

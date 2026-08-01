@@ -3,12 +3,21 @@
 import { Bell, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import UserNav from "./UserNav";
+import { User } from "@/lib/types";
 
-interface DashboardHeaderProps {
-  onMenuClick?: () => void;
-}
+// interface DashboardHeaderProps {
+//   onMenuClick?: () => void;
+// }
 
-export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
+type DashboardHeaderProps = {
+  user: User;
+  onMenuClick: () => void;
+};
+
+export default function DashboardHeader({
+  user,
+  onMenuClick,
+}: DashboardHeaderProps) {
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background px-6">
       {/* Left */}
@@ -37,7 +46,7 @@ export default function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
           <Bell className="h-5 w-5" />
         </Button>
 
-        <UserNav />
+        <UserNav user={user} />
       </div>
     </header>
   );

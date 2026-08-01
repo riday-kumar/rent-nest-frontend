@@ -171,3 +171,17 @@ export type PropertyDetails = {
     };
   }[];
 };
+
+export type User = {
+  status: boolean;
+  message: string;
+  data: {
+    id: string;
+    name: string;
+    email: string;
+    role: "TENANT" | "LANDLORD" | "ADMIN";
+    isActive: boolean;
+    createdAt: string;
+    updatedAt: string;
+  };
+};

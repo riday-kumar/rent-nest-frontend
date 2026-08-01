@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import SidebarItem from "./SidebarItem";
 import { landlordLinks, tenantLinks } from "./Navigation";
 
-type Role = "LANDLORD" | "TENANT";
+type Role = "LANDLORD" | "TENANT" | "ADMIN";
 
 interface DashboardSidebarProps {
   role: Role;
@@ -58,27 +58,6 @@ export default function DashboardSidebar({
       </div>
 
       <Separator />
-
-      {/* User */}
-
-      <div className="p-4">
-        <div className="mb-4 flex items-center gap-3">
-          <Avatar>
-            <AvatarFallback>H</AvatarFallback>
-          </Avatar>
-
-          <div>
-            <h4 className="font-medium">Hridoy</h4>
-
-            <p className="text-xs text-muted-foreground">hridoy@email.com</p>
-          </div>
-        </div>
-
-        <Button variant="outline" className="w-full justify-start gap-2">
-          <LogOut className="h-4 w-4" />
-          Logout
-        </Button>
-      </div>
     </div>
   );
 }

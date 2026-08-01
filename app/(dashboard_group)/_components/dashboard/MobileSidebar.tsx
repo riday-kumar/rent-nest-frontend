@@ -4,7 +4,7 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 import DashboardSidebar from "./DashboardSidebar";
 
-type Role = "LANDLORD" | "TENANT";
+type Role = "LANDLORD" | "TENANT" | "ADMIN";
 
 interface MobileSidebarProps {
   open: boolean;

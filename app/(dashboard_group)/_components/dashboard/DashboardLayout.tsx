@@ -5,17 +5,16 @@ import { useState } from "react";
 import DashboardHeader from "./DashboardHeader";
 import DashboardSidebar from "./DashboardSidebar";
 import MobileSidebar from "./MobileSidebar";
-
-type Role = "LANDLORD" | "TENANT";
+import { User } from "@/lib/types";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
-  role: Role;
+  user: User;
 }
 
 export default function DashboardLayout({
   children,
-  role,
+  user,
 }: DashboardLayoutProps) {
   const [open, setOpen] = useState(false);
 
@@ -23,16 +22,16 @@ export default function DashboardLayout({
     <div className="flex min-h-screen bg-muted/30">
       {/* Desktop Sidebar */}
 
-      <DashboardSidebar role={role} />
+      <DashboardSidebar role={user.data.role} />
 
       {/* Mobile Sidebar */}
 
-      <MobileSidebar role={role} open={open} onOpenChange={setOpen} />
+      <MobileSidebar role={user.data.role} open={open} onOpenChange={setOpen} />
 
       {/* Content */}
 
       <div className="flex flex-1 flex-col">
-        <DashboardHeader onMenuClick={() => setOpen(true)} />
+        <DashboardHeader user={user} onMenuClick={() => setOpen(true)} />
 
         <main className="flex-1 overflow-auto p-6">
           <div className="mx-auto max-w-7xl">{children}</div>
