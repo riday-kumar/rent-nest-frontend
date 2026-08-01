@@ -109,6 +109,7 @@ export default function TenantRentRequestsTable({ requests }: Props) {
                 <TableHead>Status</TableHead>
 
                 <TableHead className="text-right">Payment</TableHead>
+                <TableHead className="text-right">Review</TableHead>
               </TableRow>
             </TableHeader>
 
