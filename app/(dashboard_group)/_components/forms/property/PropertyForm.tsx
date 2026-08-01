@@ -22,7 +22,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Suspense, useEffect, useState } from "react";
-import { PropertyFormValues } from "@/lib/types";
+import { PropertyFormUpdateValues, PropertyFormValues } from "@/lib/types";
 import { createProperty } from "@/app/(dashboard_group)/_actions/property/createProperty";
 import { updateProperty } from "@/app/(dashboard_group)/_actions/property/updateProperty";
 import { gestCategory } from "@/app/(dashboard_group)/_actions/property/getCategory";
@@ -51,7 +51,7 @@ const amenityOptions = [
 
 type PropertyFormProps = {
   mode: "create" | "update";
-  initialData?: Partial<PropertyFormValues>;
+  initialData?: Partial<PropertyFormUpdateValues>;
 };
 
 type Category = {
@@ -119,7 +119,7 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
 
       images: "",
 
-      amenities: "",
+      amenities: [],
 
       categoryId: "",
     },
@@ -346,7 +346,7 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
 
           <Select
             value={watch("categoryId") ? String(watch("categoryId")) : ""}
-            onValueChange={(value) => setValue("categoryId", Number(value))}
+            onValueChange={(value) => setValue("categoryId", value!)}
           >
             <SelectTrigger>
               <SelectValue placeholder="Select category" />

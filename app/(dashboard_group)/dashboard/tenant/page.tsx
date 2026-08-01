@@ -1,10 +1,12 @@
-import React from "react";
-import TenantRentRequestsTable from "../../_components/tenant/RentRequestTable";
+import React, { Suspense } from "react";
+import AllRentReqTable from "../../_components/tenant/AllRentReqTable";
 
 const TenantDashboardHome = () => {
   return (
     <div>
-      <TenantRentRequestsTable />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AllRentReqTable />
+      </Suspense>
     </div>
   );
 };

@@ -1,12 +1,9 @@
 "use server";
 
-import { PropertyFormValues } from "@/lib/types";
+import { PropertyPayload } from "@/lib/types";
 import { tokens } from "@/service/tokens";
 
-export const updateProperty = async (
-  id: string,
-  payload: PropertyFormValues,
-) => {
+export const updateProperty = async (id: string, payload: PropertyPayload) => {
   const { accessToken } = await tokens();
   const res = await fetch(
     `${process.env.BACKEND_API_URL}/landlord/properties/${id}`,

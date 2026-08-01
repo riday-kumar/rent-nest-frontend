@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 import { Eye, Pencil, Trash2 } from "lucide-react";
@@ -37,7 +36,9 @@ interface Property {
 }
 
 interface AllPropertiesProps {
-  properties: Property[];
+  properties: {
+    data: Property[];
+  };
 }
 
 // const properties = [
@@ -92,27 +93,6 @@ export default function AllProperties({ properties }: AllPropertiesProps) {
 
                 <TableCell>
                   <div className="flex items-center gap-3">
-                    {/* <Image
-
-                        src={
-                          property.images[0]
-                        }
-
-                        alt={
-                          property.title
-                        }
-
-                        width={60}
-
-                        height={60}
-
-                        className="
-                        rounded-md 
-                        object-cover
-                        "
-
-                      /> */}
-
                     <div>
                       <p className="font-medium">{property.title}</p>
                     </div>

@@ -1,9 +1,9 @@
 "use server";
 
-import { PropertyFormValues } from "@/lib/types";
+import { PropertyPayload } from "@/lib/types";
 import { tokens } from "@/service/tokens";
 
-export const createProperty = async (payload: PropertyFormValues) => {
+export const createProperty = async (payload: PropertyPayload) => {
   const { accessToken } = await tokens();
 
   const res = await fetch(
