@@ -40,19 +40,19 @@ interface AllPropertiesProps {
   properties: Property[];
 }
 
-const properties = [
-  {
-    id: "1",
-    title: "Property 1",
-    rentAmount: "৳1000",
-    city: "Dhaka",
-    district: "Dhanmondi",
-    propertyStatus: "AVAILABLE",
-    images: ["https://picsum.photos/200/300"],
-  },
-];
+// const properties = [
+//   {
+//     id: "1",
+//     title: "Property 1",
+//     rentAmount: "৳1000",
+//     city: "Dhaka",
+//     district: "Dhanmondi",
+//     propertyStatus: "AVAILABLE",
+//     images: ["https://picsum.photos/200/300"],
+//   },
+// ];
 
-export default function AllProperties() {
+export default function AllProperties({ properties }: AllPropertiesProps) {
   const handleDelete = async (id: string) => {
     const confirmed = confirm("Are you sure you want to delete this property?");
 
@@ -86,7 +86,7 @@ export default function AllProperties() {
           </TableHeader>
 
           <TableBody>
-            {properties.map((property) => (
+            {properties.data.map((property) => (
               <TableRow key={property.id}>
                 {/* Property */}
 
