@@ -1,6 +1,5 @@
 "use client";
 import { TypeAnimation } from "react-type-animation";
-import HeroSearch from "./HeroSearch";
 
 const Banner = () => {
   return (
@@ -28,7 +27,6 @@ const Banner = () => {
           />
         </h1>
         {/* ============== search ================= */}
-        {/* <HeroSearch /> */}
       </div>
     </div>
   );

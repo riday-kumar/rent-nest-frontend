@@ -169,7 +169,7 @@ export default function PropertyForm({ mode, initialData }: PropertyFormProps) {
       categoryId: Number(data.categoryId),
     };
 
-    console.log("payload", payload);
+    // console.log("payload", payload);
 
     // API CALL HERE
     if (mode === "create") {

@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import LandLordDashboardHomeCards from "../../_components/dashboard/LandLordDashboardHomeCards";
+import DashboardHomeCardSkeleton from "../../_components/dashboard/DashboardHomeCardSkeleton";
 
 export default function LandlordDashboard() {
   return (
@@ -18,7 +19,7 @@ export default function LandlordDashboard() {
 
       {/* Cards */}
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<DashboardHomeCardSkeleton />}>
         <LandLordDashboardHomeCards />
       </Suspense>
     </div>

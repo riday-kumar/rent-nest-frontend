@@ -43,18 +43,6 @@ interface AllPropertiesProps {
   };
 }
 
-// const properties = [
-//   {
-//     id: "1",
-//     title: "Property 1",
-//     rentAmount: "৳1000",
-//     city: "Dhaka",
-//     district: "Dhanmondi",
-//     propertyStatus: "AVAILABLE",
-//     images: ["https://picsum.photos/200/300"],
-//   },
-// ];
-
 export default function AllProperties({ properties }: AllPropertiesProps) {
   const router = useRouter();
 

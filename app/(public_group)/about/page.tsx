@@ -109,7 +109,7 @@ export default function AboutPage() {
             </p>
 
             <p className="mt-5 text-gray-600 leading-8">
-              Whether you're searching for your next apartment or listing your
+              Whether you are searching for your next apartment or listing your
               property, RentNest provides the tools you need to make smarter
               rental decisions.
             </p>

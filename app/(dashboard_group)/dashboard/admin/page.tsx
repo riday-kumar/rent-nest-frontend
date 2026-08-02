@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import AdminDashboardHomeCards from "../../_components/adminComponents/AdminDashboardHomeCards";
+import DashboardHomeCardSkeleton from "../../_components/dashboard/DashboardHomeCardSkeleton";
 
 const AdminHomePage = () => {
   return (
@@ -18,7 +19,7 @@ const AdminHomePage = () => {
 
       {/* Cards */}
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<DashboardHomeCardSkeleton />}>
         <AdminDashboardHomeCards />
       </Suspense>
     </div>

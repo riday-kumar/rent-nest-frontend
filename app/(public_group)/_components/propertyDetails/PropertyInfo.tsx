@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { PropertyDetails } from "@/lib/types";
 import {
   Bath,
   BedDouble,
@@ -17,7 +18,7 @@ type InfoProps = {
   children: React.ReactNode;
 };
 
-const PropertyInfo = ({ property }) => {
+const PropertyInfo = ({ property }: { property: PropertyDetails }) => {
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-5">Property Information</h2>
