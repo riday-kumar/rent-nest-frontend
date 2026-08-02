@@ -1,4 +1,5 @@
 import { LayoutDashboard, House, FileText, PlusCircle } from "lucide-react";
+import { MdPayment } from "react-icons/md";
 
 export const landlordLinks = [
   {
@@ -28,5 +29,10 @@ export const tenantLinks = [
     title: "Dashboard",
     href: "/dashboard/tenant",
     icon: LayoutDashboard,
+  },
+  {
+    title: "Payment History",
+    href: "/dashboard/tenant/payment-history",
+    icon: MdPayment,
   },
 ];

@@ -16,7 +16,11 @@ const RequestButton = ({
     if (res.success) {
       toast.success("Request sent successfully");
     } else {
-      toast.error(res.message);
+      if (res.message === "jwt malformed") {
+        toast.error("Please login");
+      } else {
+        toast.error(res.message);
+      }
     }
   };
 
@@ -26,7 +30,9 @@ const RequestButton = ({
       onClick={() => handleRentalReq()}
       className="w-full mt-8 h-11"
     >
-      Send Request for this Property
+      {propertyStatus === "RENTED"
+        ? "This property is already rented"
+        : "Send Request for this Property"}
     </Button>
   );
 };

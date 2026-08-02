@@ -13,3 +13,15 @@ export const getTenantReqData = async () => {
   const data = await res.json();
   return data;
 };
+
+export const getTenantTransactionData = async () => {
+  const { accessToken } = await tokens();
+  const res = await fetch(`${process.env.BACKEND_API_URL}/payments`, {
+    headers: {
+      Cookie: `accessToken=${accessToken}`,
+    },
+  });
+
+  const data = await res.json();
+  return data;
+};
