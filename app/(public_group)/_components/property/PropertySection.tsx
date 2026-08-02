@@ -48,9 +48,15 @@ import { PropertyCardProps } from "@/lib/types";
 //   },
 // ];
 
-const PropertySection = async ({ query }: { query: string }) => {
+const PropertySection = async ({
+  query,
+  type,
+}: {
+  query: string;
+  type: string;
+}) => {
   // api called here
-  const data = await allPublicProperties(query);
+  const data = await allPublicProperties(query, type);
   const properties = data.data;
   // console.log("properties", properties.data);
 
@@ -59,7 +65,7 @@ const PropertySection = async ({ query }: { query: string }) => {
   }
 
   return (
-    <div className="space-y-6 mt-20">
+    <div className="space-y-6 mt-0">
       {properties.data.map((property: PropertyCardProps) => (
         <PropertyCard key={property.id} property={property} />
       ))}

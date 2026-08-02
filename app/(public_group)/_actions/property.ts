@@ -3,9 +3,9 @@
 
 import { tokens } from "@/service/tokens";
 
-export const allPublicProperties = async (query: any) => {
+export const allPublicProperties = async (query: any, type: string) => {
   const res = await fetch(
-    `${process.env.BACKEND_API_URL}/properties?location=${query}`,
+    `${process.env.BACKEND_API_URL}/properties?location=${query}&type=${type}`,
   );
   const data = await res.json();
   return data;

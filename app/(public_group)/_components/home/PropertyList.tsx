@@ -8,8 +8,8 @@ import { PropertyCardProps } from "@/lib/types";
 import Link from "next/link";
 
 const PropertyList = async () => {
-  const PublicProperties = await allPublicProperties();
-  const sixProperties = PublicProperties.data.data.slice(0, 6);
+  const PublicProperties = await allPublicProperties("");
+  const sixProperties = PublicProperties?.data?.data?.slice(0, 6);
   return (
     <div className="bg-[#fef7f6] py-15">
       <div className="w-11/12 mx-auto max-lg:px-6 ">
@@ -29,7 +29,7 @@ const PropertyList = async () => {
         </div>
         {/* =================== property card ================= */}
         <div className="grid lg:grid-cols-3 gap-10 md:grid-cols-2 grid-cols-1">
-          {sixProperties.map((property: PropertyCardProps) => (
+          {sixProperties?.map((property: PropertyCardProps) => (
             <PropertyCardForHome key={property.id} property={property} />
           ))}
         </div>
