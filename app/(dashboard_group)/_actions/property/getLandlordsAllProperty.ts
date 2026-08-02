@@ -22,3 +22,19 @@ export const getLandlordsAllProperty = async () => {
   const data = await res.json();
   return data;
 };
+
+export const deleteLandlordProperty = async (id: string) => {
+  const { accessToken } = await tokens();
+
+  const res = await fetch(
+    `${process.env.BACKEND_API_URL}/landlord/properties/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Cookie: `accessToken=${accessToken}`,
+      },
+    },
+  );
+  const result = res.json();
+  return result;
+};

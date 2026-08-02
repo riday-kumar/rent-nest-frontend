@@ -18,6 +18,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { deleteLandlordProperty } from "../../_actions/property/getLandlordsAllProperty";
+import { useRouter } from "next/navigation";
 
 interface Property {
   id: string;
@@ -54,14 +56,17 @@ interface AllPropertiesProps {
 // ];
 
 export default function AllProperties({ properties }: AllPropertiesProps) {
+  const router = useRouter();
+
   const handleDelete = async (id: string) => {
     const confirmed = confirm("Are you sure you want to delete this property?");
 
     if (!confirmed) return;
 
-    console.log("Delete property:", id);
+    // console.log("Delete property:", id);
 
-    // await deleteProperty(id)
+    await deleteLandlordProperty(id);
+    router.refresh();
   };
 
   return (
@@ -87,7 +92,7 @@ export default function AllProperties({ properties }: AllPropertiesProps) {
           </TableHeader>
 
           <TableBody>
-            {properties.data.map((property) => (
+            {properties?.data.map((property) => (
               <TableRow key={property.id}>
                 {/* Property */}
 
