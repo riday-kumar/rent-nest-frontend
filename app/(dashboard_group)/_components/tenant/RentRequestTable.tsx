@@ -171,7 +171,8 @@ export default function TenantRentRequestsTable({ requests }: Props) {
 
                   {/* review */}
                   <TableCell className="text-right">
-                    {request.rentStatus === "APPROVED" ? (
+                    {request.rentStatus === "APPROVED" &&
+                    request.payment?.status === "PAID" ? (
                       request.property.review.length === 0 ? (
                         // <Button
                         //   size="sm"
