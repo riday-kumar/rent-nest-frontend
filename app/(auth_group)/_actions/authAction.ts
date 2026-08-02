@@ -56,3 +56,42 @@ export const loginAction = async (previousState: false, formData: FormData) => {
 
   return result;
 };
+
+export const registerAction = async (
+  previousState: false,
+  formData: FormData,
+) => {
+  const name = formData.get("name") as string;
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+  let role = formData.get("role") as string;
+
+  if (role.length === 0) {
+    role = "TENANT";
+  }
+
+  // console.log({ name, email, password, role });
+
+  const payload = {
+    name,
+    email,
+    password,
+    role,
+  };
+
+  const res = await fetch(`${process.env.BACKEND_API_URL}/auth/register`, {
+    method: "POST",
+    headers: {
+      "content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  const result = await res.json();
+  // console.log("result", result);
+
+  if (result.success) {
+    redirect("/login");
+  }
+
+  return result;
+};

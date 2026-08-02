@@ -1,26 +1,10 @@
-"use client";
-
 import Image from "next/image";
-import Link from "next/link";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import RegisterForm from "../_components/RegisterForm";
 
 export default function RegisterPage() {
-  const [showPassword, setShowPassword] = useState(false);
-
   return (
     <section className="min-h-screen">
       <div className="w-11/12 mx-auto mt-36 mb-24 flex min-h-screen items-center justify-center px-5 my-20">
@@ -63,83 +47,7 @@ export default function RegisterPage() {
                 </p>
               </div>
 
-              <form className="space-y-6">
-                {/* Name */}
-
-                <div className="space-y-2">
-                  <Label>Full Name</Label>
-
-                  <Input placeholder="Enter your full name" className="h-12" />
-                </div>
-
-                {/* Email */}
-
-                <div className="space-y-2">
-                  <Label>Email</Label>
-
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="h-12"
-                  />
-                </div>
-
-                {/* Password */}
-
-                <div className="space-y-2">
-                  <Label>Password</Label>
-
-                  <div className="relative">
-                    <Input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Enter password"
-                      className="h-12 pr-12"
-                    />
-
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground"
-                    >
-                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Role */}
-
-                <div className="space-y-2">
-                  <Label>Role</Label>
-
-                  <Select>
-                    <SelectTrigger className="h-12">
-                      <SelectValue placeholder="Select your role" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      <SelectItem value="TENANT">Tenant</SelectItem>
-
-                      <SelectItem value="LANDLORD">Landlord</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Register Button */}
-
-                <Button className="h-12 w-full text-base">
-                  Create Account
-                </Button>
-
-                <p className="text-center text-sm text-muted-foreground">
-                  Already have an account?{" "}
-                  <Link
-                    href="/login"
-                    className="font-semibold text-primary hover:underline"
-                  >
-                    Login
-                  </Link>
-                </p>
-              </form>
+              <RegisterForm />
             </div>
           </CardContent>
         </Card>
