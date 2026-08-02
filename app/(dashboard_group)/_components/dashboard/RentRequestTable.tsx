@@ -6,9 +6,9 @@ import { allRentalReqForLandlord } from "../../_actions/request_action/requestAc
 
 export default async function RentRequestTable() {
   const allRequests = await allRentalReqForLandlord();
-  const requests = allRequests.data.data;
+  const requests = allRequests?.data?.data;
   // console.log("requests", allRequests);
-  if (requests.length === 0) {
+  if (!allRequests.success) {
     return <p>No rent requests found.</p>;
   }
 
