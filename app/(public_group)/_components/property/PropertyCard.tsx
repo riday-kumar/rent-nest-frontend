@@ -104,9 +104,9 @@ const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
 
               <div>
                 <p className="font-medium">{property.landlord.name}</p>
-                <p className="text-sm text-muted-foreground">
-                  {property.createdAt}
-                </p>
+                {/* <p className="text-sm text-muted-foreground">
+                  {property.landlord.email}
+                </p> */}
               </div>
             </div>
 

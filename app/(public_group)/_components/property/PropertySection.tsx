@@ -48,8 +48,9 @@ import { PropertyCardProps } from "@/lib/types";
 //   },
 // ];
 
-const PropertySection = async () => {
-  const data = await allPublicProperties();
+const PropertySection = async ({ query }: { query: string }) => {
+  // api called here
+  const data = await allPublicProperties(query);
   const properties = data.data;
   // console.log("properties", properties.data);
 

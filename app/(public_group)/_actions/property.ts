@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
 import { tokens } from "@/service/tokens";
 
-export const allPublicProperties = async () => {
-  const res = await fetch(`${process.env.BACKEND_API_URL}/properties`);
+export const allPublicProperties = async (query: any) => {
+  const res = await fetch(
+    `${process.env.BACKEND_API_URL}/properties?location=${query}`,
+  );
   const data = await res.json();
   return data;
 };
