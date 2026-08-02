@@ -9,19 +9,19 @@ const LandLordDashboardHomeCards = async () => {
     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       <LandlordOverviewCard
         title="Total Properties"
-        value={allInfo.data.data.numOfProperty}
+        value={allInfo?.data?.data?.numOfProperty}
         icon={Home}
       />
 
       <LandlordOverviewCard
         title="Active Requests"
-        value={allInfo.data.data.numOfActiveStatus}
+        value={allInfo?.data?.data?.numOfActiveStatus}
         icon={FileText}
       />
 
       <LandlordOverviewCard
         title="Total Earnings"
-        value={`৳ ${allInfo.data.data.numOfEarnings}`}
+        value={`৳ ${allInfo?.data?.data?.numOfEarnings}`}
         icon={Wallet}
       />
     </div>

@@ -6,7 +6,7 @@ const PropertyForUpdate = async ({ params }: { params: string }) => {
   const property = await getSingleProperty(params);
   return (
     <div>
-      <h1>Update Property id : {params}</h1>
+      {/* <h1>Update Property id : {params}</h1> */}
       <PropertyForm mode="update" initialData={property.data} />
     </div>
   );

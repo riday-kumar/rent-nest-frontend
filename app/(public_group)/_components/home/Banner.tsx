@@ -1,9 +1,13 @@
 "use client";
 import { TypeAnimation } from "react-type-animation";
 import HeroSearch from "./HeroSearch";
+
 const Banner = () => {
   return (
-    <div className=" bg-[#13293da5] bg-[url('/banner3.jpg')] bg-blend-overlay bg-cover bg-center ">
+    <div
+      style={{ backgroundImage: "url('/mainBanner.jpg')" }}
+      className=" bg-[#13293da5] bg-[url('/mainBanner.jpg')] bg-blend-overlay bg-cover bg-center"
+    >
       <div className="space-y-10 flex flex-col justify-center items-center h-screen">
         {/* ============= heading ============= */}
         <h1 className="text-center mt-44 text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold text-white">

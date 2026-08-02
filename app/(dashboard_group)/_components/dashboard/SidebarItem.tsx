@@ -2,20 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LucideIcon } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 
 interface SidebarItemProps {
   title: string;
   href: string;
-  icon: LucideIcon;
 }
 
-export default function SidebarItem({
-  title,
-  href,
-  icon: Icon,
-}: SidebarItemProps) {
+export default function SidebarItem({ title, href }: SidebarItemProps) {
   const pathname = usePathname();
   // console.log("pathname", pathname);
 
@@ -32,7 +27,6 @@ export default function SidebarItem({
           : "text-muted-foreground hover:bg-muted hover:text-foreground",
       )}
     >
-      <Icon className="h-5 w-5" />
       <span>{title}</span>
     </Link>
   );
