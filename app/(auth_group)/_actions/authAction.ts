@@ -21,7 +21,7 @@ export const loginAction = async (previousState: false, formData: FormData) => {
     body: JSON.stringify(payload),
   });
   const result = await res.json();
-  console.log("result", result);
+  // console.log("result", result);
 
   if (result.success) {
     const cookieStore = await cookies();

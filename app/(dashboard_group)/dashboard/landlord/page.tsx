@@ -1,7 +1,5 @@
-import { Home, FileText, Wallet, Plus } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import LandlordOverviewCard from "../../_components/landlordComponent/OverviewCard";
+import { Suspense } from "react";
+import LandLordDashboardHomeCards from "../../_components/dashboard/LandLordDashboardHomeCards";
 
 export default function LandlordDashboard() {
   return (
@@ -16,30 +14,13 @@ export default function LandlordDashboard() {
             Welcome back! Here is your rental overview.
           </p>
         </div>
-
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          Add Property
-        </Button>
       </div>
 
       {/* Cards */}
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        <LandlordOverviewCard title="Total Properties" value={12} icon={Home} />
-
-        <LandlordOverviewCard
-          title="Active Requests"
-          value={5}
-          icon={FileText}
-        />
-
-        <LandlordOverviewCard
-          title="Total Earnings"
-          value="৳120,000"
-          icon={Wallet}
-        />
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <LandLordDashboardHomeCards />
+      </Suspense>
     </div>
   );
 }

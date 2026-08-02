@@ -7,7 +7,7 @@ import RequestButton from "./RequestButton";
 import { PropertyDetails } from "@/lib/types";
 
 const LandlordCard = ({ property }: { property: PropertyDetails }) => {
-  console.log("property form landlord card", property);
+  // console.log("property form landlord card", property);
   return (
     <Card className="h-fit sticky top-24 shadow-md">
       <CardContent className="p-6">
