@@ -60,7 +60,7 @@ export function Navbar({ user }: { user: IUser }) {
 
   const handleRedirect = () => {
     if (user?.data.role === "ADMIN") {
-      router.push("/admin");
+      router.push("/dashboard/admin");
     } else if (user?.data.role === "LANDLORD") {
       router.push("/dashboard/landlord");
     } else {

@@ -10,7 +10,7 @@ const LandlordPropertiesContent = async () => {
   }
   return (
     <div>
-      <AllProperties properties={properties.data} />
+      <AllProperties properties={properties?.data} />
     </div>
   );
 };
