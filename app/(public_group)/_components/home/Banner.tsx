@@ -28,7 +28,7 @@ const Banner = () => {
           />
         </h1>
         {/* ============== search ================= */}
-        <HeroSearch />
+        {/* <HeroSearch /> */}
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import { PropertyCardProps } from "@/lib/types";
 import Link from "next/link";
 
 const PropertyList = async () => {
-  const PublicProperties = await allPublicProperties("");
+  const PublicProperties = await allPublicProperties("", "");
   const sixProperties = PublicProperties?.data?.data?.slice(0, 6);
   return (
     <div className="bg-[#fef7f6] py-15">
