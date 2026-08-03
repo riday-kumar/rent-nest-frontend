@@ -1,36 +1,171 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏠 RentNest
 
-## Getting Started
+RentNest is a full-stack rental property platform that connects landlords and tenants in a seamless and secure way. Landlords can list and manage rental properties, while tenants can search, request rentals, and complete online payments. The platform also includes an admin dashboard for managing users and monitoring rental activities.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+### 👤 Authentication
+
+- User registration and login
+- JWT-based authentication
+- Role-based authorization (Admin, Landlord, Tenant)
+- Protected routes
+
+### 🏡 Property Management
+
+- Browse all available properties
+- Search and filter properties
+- View detailed property information
+- Add, update, and delete properties (Landlord)
+
+### 📄 Rental Requests
+
+- Send rental requests
+- Approve or reject requests (Landlord)
+- Track rental request status
+
+### 💳 Payments
+
+- Secure online payment integration
+- Payment history for tenants
+
+### 🛠️ Admin Dashboard
+
+- Manage users
+- Activate or suspend user accounts
+- View all rental requests
+- Monitor pending rental requests
+
+### 📱 Responsive UI
+
+- Fully responsive design
+- Modern interface built with Tailwind CSS and shadcn/ui
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- React Hook Form
+- Zod
+- Sonner
+
+### Backend
+
+- Node.js
+- Express.js
+- TypeScript
+- Prisma ORM
+- PostgreSQL
+- JWT Authentication
+- Bcrypt
+
+### Payment
+
+- SSLCOMMERZ
+
+### Deployment
+
+- Vercel (Frontend)
+- Vercel (Backend)
+- PostgreSQL Database
+
+---
+
+## 🔗 Related Repositories
+
+- Backend: https://github.com/riday-kumar/rent-nest-server.git
+
+---
+
+## 🚀 Installation
+
+### Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+### Install dependencies
+
+Frontend
+
+```bash
+cd RENT_NEST_FRONTEND_B7_A4
+npm install
+```
+
+Backend
+
+```bash
+cd backend
+npm install
+```
+
+---
+
+## ⚙️ Environment Variables
+
+### Backend (.env)
+
+```env
+BACKEND_API_URL= your_backend_api_url
+
+JWT_ACCESS_SECRET= your_access_secret
+JWT_REFRESH_SECRET= your_refresh_secret
+ACCESS_TOKEN_EXPIRES= your_access_token_expires_time
+REFRESH_TOKEN_EXPIRES= your_refresh_token_expires_time
+```
+
+---
+
+## ▶️ Run Locally
+
+### Frontend
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📚 API Documentation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The API endpoints used in this project are documented in:
 
-## Learn More
+```text
+api_integration.md
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📸 Screenshots
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+![Home](./images/rent_nest_home.png)
+![Landlord Dashboard](./images/landlord_dashboard.png)
+![Tenant Dashboard](./images/tenant_dashboard.png)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔮 Future Improvements
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Wishlist/Favorites
+- Email notifications
+- Image upload with Cloudinary
+- Google Maps integration
+
+---
+
+## 👨‍💻 Author
+
+**Hridoy**
+
+If you found this project useful, consider giving it a ⭐ on GitHub.

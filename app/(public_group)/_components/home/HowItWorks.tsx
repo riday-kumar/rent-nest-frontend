@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Home, MessageSquareText, KeyRound } from "lucide-react";
+import { Home, MessageSquareText, KeyRound, Wallet2 } from "lucide-react";
 
 const steps = [
   {
@@ -15,10 +15,14 @@ const steps = [
       "Send rental requests directly to property owners and communicate with them securely.",
   },
   {
+    icon: Wallet2,
+    title: "Pay First Month Rent",
+    description: "Once your request is approved, pay the first month rent.",
+  },
+  {
     icon: KeyRound,
     title: "Take the Keys",
-    description:
-      "Once your request is approved, pay the first month rent and move into your new home with confidence.",
+    description: "Move into your new home with confidence.",
   },
 ];
 

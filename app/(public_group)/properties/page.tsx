@@ -14,17 +14,22 @@ const PropertiesPage = async (props: {
   const query = searchParams?.location || "";
   const type = searchParams?.type || "";
   return (
-    <div className="w-10/12 mx-auto mt-36 mb-24 ">
+    <div className=" w-11/12 mx-auto px-4 sm:px-6 lg:px-8 mt-28 lg:mt-36 mb-16 lg:mb-24">
       <PropertySearch />
-      <div className="grid grid-cols-12 gap-8 mt-8 w-full ">
-        <div className="col-span-9">
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8">
+        {/* Property List */}
+        <div className="lg:col-span-9 order-2 lg:order-1">
           <Suspense fallback={<Loading />}>
             <PropertySection query={query} type={type} />
           </Suspense>
         </div>
-        {/* ================= advance searching =========== */}
-        <div className="col-span-3 sticky top-20 h-fit ">
-          <AdvancedFiltering />
+
+        {/* Advanced Filtering */}
+        <div className="lg:col-span-3 order-1 lg:order-2">
+          <div className="lg:sticky lg:top-20">
+            <AdvancedFiltering />
+          </div>
         </div>
       </div>
     </div>

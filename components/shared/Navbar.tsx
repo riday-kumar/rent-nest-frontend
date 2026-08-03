@@ -141,7 +141,7 @@ export function Navbar({ user }: { user: IUser }) {
                       <DropdownMenuSeparator />
                       <p
                         onClick={() => handleRedirect()}
-                        className="text-xs text-foreground/70"
+                        className="cursor-pointer text-xs text-foreground/70"
                       >
                         Dashboard
                       </p>
