@@ -6,7 +6,14 @@ import { verifyToken } from "./utils/jwt";
 import { getNewAccessToken } from "./service/refreshToken";
 
 const AUTH_ROUTES = ["/login", "/register"];
-const PUBLIC_ROUTES = ["/", "/about", "/properties"];
+const PUBLIC_ROUTES = [
+  "/",
+  "/about",
+  "/properties",
+  "/payment/success",
+  "/payment/cancel",
+  "/payment/fail",
+];
 
 export async function proxy(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
