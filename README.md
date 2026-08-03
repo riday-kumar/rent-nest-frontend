@@ -99,7 +99,7 @@ git clone <repository-url>
 Frontend
 
 ```bash
-cd RENT_NEST_FRONTEND_B7_A4
+cd rent-nest-frontend
 npm install
 ```
 
