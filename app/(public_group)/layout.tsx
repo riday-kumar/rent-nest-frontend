@@ -1,6 +1,7 @@
 import Footer from "@/components/shared/Footer";
 import NavbarWithUser from "./_components/navbarUser/NavbarWithUser";
 import { Suspense } from "react";
+import NavbarSkeleton from "./_components/navbarUser/NavbarSkeleton";
 
 export default async function PublicLayout({
   children,
@@ -9,7 +10,7 @@ export default async function PublicLayout({
 }>) {
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<NavbarSkeleton />}>
         <NavbarWithUser />
       </Suspense>
       {children}
