@@ -225,7 +225,9 @@ export function Navbar({ user }: { user: IUser }) {
                       <Button variant="outline" className="w-full">
                         <Link href="/login">Sign In</Link>
                       </Button>
-                      <Button className="w-full">Sign Up</Button>
+                      <Button className="w-full">
+                        <Link href="/register">Sign Up</Link>
+                      </Button>
                     </div>
                   )}
                 </div>
